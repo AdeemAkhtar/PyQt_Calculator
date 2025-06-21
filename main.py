@@ -24,6 +24,20 @@ delete = QPushButton('<')
 # Functions
 
 def button_click():
+    """
+        Handles the logic for calculator button clicks in a PyQt GUI application.
+
+        This function is triggered when any calculator button is clicked.
+        It performs actions based on the button's label:
+        
+        - If the button is '=', it evaluates the expression in the text box using `eval()` and displays the result.
+        If the expression is invalid, it displays an error message.
+        - If the button is 'C', it clears the text box.
+        - If the button is '<', it removes the last character from the current input.
+        - Otherwise, it appends the button's label (digit/operator) to the current input.
+
+        Assumes the use of a global or accessible `app.sender()` and a `text_box` object for UI interaction.
+    """
     button = app.sender()
     text = button.text()
 
@@ -50,10 +64,6 @@ def button_click():
     else:
         current_value = text_box.text()
         text_box.setText(current_value + text)
-
-
-
-
 
 # App Counters
 row = 0
