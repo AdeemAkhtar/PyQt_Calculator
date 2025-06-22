@@ -26,7 +26,7 @@ class CalculatorApp(QWidget):
             '7', '8', '9', '/', 
             '4', '5', '6', '*', 
             '1', '2', '3', '-', 
-            '0', '.', '=', '+'
+            '0', '.', '+', '='
         ]
 
         # App Counters
@@ -47,14 +47,26 @@ class CalculatorApp(QWidget):
         self.clear = QPushButton('C')
         self.delete = QPushButton('<')
 
+        self.left_para = QPushButton('(')
+        self.right_para = QPushButton(')')
+
         self.clear.setStyleSheet("QPushButton {font: 25pt Comic Sans MS; padding: 10px; margin:10px}")
         self.delete.setStyleSheet("QPushButton {font: 25pt Comic Sans MS; padding: 10px; margin:10px}")
+        self.left_para.setStyleSheet("QPushButton {font: 25pt Comic Sans MS; padding: 10px; margin:10px}")
+        self.right_para.setStyleSheet("QPushButton {font: 25pt Comic Sans MS; padding: 10px; margin:10px}")
 
         # Design
         master_layout = QVBoxLayout()
         master_layout.addWidget(self.text_box)
         master_layout.addLayout(self.grid)
 
+        # Paranthesis Buttons
+        button_para_row = QHBoxLayout()
+        button_para_row.addWidget(self.left_para)
+        button_para_row.addWidget(self.right_para)
+        master_layout.addLayout(button_para_row)
+
+        # Clear and Delet Buttons
         button_row = QHBoxLayout()
         button_row.addWidget(self.clear)
         button_row.addWidget(self.delete)
@@ -65,6 +77,8 @@ class CalculatorApp(QWidget):
 
         self.clear.clicked.connect(self.button_click)
         self.delete.clicked.connect(self.button_click)
+        self.left_para.clicked.connect(self.button_click)
+        self.right_para.clicked.connect(self.button_click)
         
     # Functions
     def button_click(self):
